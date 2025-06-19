@@ -1,11 +1,13 @@
+@Library("wam_shared_library") _
+
 pipeline {
     
     agent { label "dev" };
         
     stages{
-        stage("Code"){
+        stage("Code Clone"){
             steps{
-                git url: "https://github.com/sahmed448/two-tier-flask-app.git", branch: "master"
+                clone("https://github.com/sahmed448/two-tier-flask-app.git", "master")
                 echo "Git Repo is cloned to $pwd/workspace/demo-cicd"
             }
         }
