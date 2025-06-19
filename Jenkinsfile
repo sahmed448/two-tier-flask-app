@@ -23,20 +23,21 @@ pipeline {
                 sh "docker build -t sahmed448/two-tier-flask-app:latest ."
             }
         }
+        
         stage("Test"){
             steps{
                 echo "Testing your app"
             }
         }
+        
         stage("Push to Docker Hub"){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'dockerHubUser', passwordVariable: 'dockerHubPass')]) 
-                {
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker push ${env.dockerHubUser}/two-tier-flask-app:latest"
-                }
+                script{
+                    docker_push("dockerHubCreds","two-tier-flask-app")
+                }  
             }
         }
+        
         stage("Deploy"){
             steps{
                 sh "docker compose up -d --build flask-app" 
