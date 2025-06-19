@@ -1,6 +1,5 @@
 @Library("wam_shared_library") _
 
-
 pipeline {
     
     agent { label "dev" };
@@ -8,7 +7,7 @@ pipeline {
     stages{
         stage("Code Clone"){
             steps{
-                   script{
+                script{
                    clone("https://github.com/sahmed448/two-tier-flask-app.git", "master")
                }
             }
