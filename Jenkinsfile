@@ -1,6 +1,5 @@
 @Library("wam_shared_library") _
 
-
 pipeline {
     
     agent { label "dev" };
