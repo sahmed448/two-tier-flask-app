@@ -7,8 +7,9 @@ pipeline {
     stages{
         stage("Code Clone"){
             steps{
+                script{
                 clone("https://github.com/sahmed448/two-tier-flask-app.git", "master")
-                echo "Git Repo is cloned to $pwd/workspace/demo-cicd"
+                }
             }
         }
         stage("Trivy File system Scan"){
