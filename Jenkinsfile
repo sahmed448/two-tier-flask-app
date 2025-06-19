@@ -1,3 +1,5 @@
+@Library("wam_shared_library") _
+
 pipeline {
     
     agent { label "dev" };
@@ -5,9 +7,12 @@ pipeline {
     stages{
         stage("Code Clone"){
             steps{
-                   git url: "https://github.com/sahmed448/two-tier-flask-app.git",  branch: "master" 
+                   script{
+                   clone("https://github.com/sahmed448/two-tier-flask-app.git", "master")
+               }
             }
         }
+        
         stage("Trivy File system Scan"){
             steps{
                 sh "trivy fs . -o result.json"
