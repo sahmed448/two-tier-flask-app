@@ -1,4 +1,4 @@
-@Library("wam_shared_library") _
+@Library("shared_lib") _
 
 pipeline {
     
