@@ -9,6 +9,11 @@ pipeline {
                 echo "Git Repo is cloned to $pwd/workspace/demo-cicd"
             }
         }
+        stage("Trivy File system Scan"){
+            steps{
+                sh "trivy fs . -o result.json"
+            }
+        }
         stage("Build"){
             steps{
                 sh "docker build -t sahmed448/two-tier-flask-app:latest ."
